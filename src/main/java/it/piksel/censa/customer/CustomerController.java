@@ -1,4 +1,4 @@
-package it.piksel.censa.customer.controller;
+package it.piksel.censa.customer;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.piksel.censa.customer.entity.Customer;
-import it.piksel.censa.customer.service.CustomerService;
+import it.piksel.censa.document.Customer;
+import it.piksel.censa.error.DataIsNotValidException;
 
 @RestController
 public class CustomerController {
@@ -29,7 +29,7 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customers", method = RequestMethod.POST)
-	public void addCustomer(@RequestBody Customer customer) {
+	public void addCustomer(@RequestBody Customer customer) throws DataIsNotValidException {
 		customerService.addCustomer(customer);
 	}
 

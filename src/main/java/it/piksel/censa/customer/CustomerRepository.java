@@ -1,4 +1,4 @@
-package it.piksel.censa.customer.repository;
+package it.piksel.censa.customer;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import it.piksel.censa.customer.entity.Customer;
+import it.piksel.censa.document.Customer;
 
-public interface CustomerRepository extends CrudRepository<Customer,String>{
+public interface CustomerRepository extends MongoRepository<Customer,String>{
 
 	@Override
 	@Cacheable("customer")
@@ -24,10 +24,10 @@ public interface CustomerRepository extends CrudRepository<Customer,String>{
     @SuppressWarnings("unchecked")
 	@Override
     @CachePut("customer")
-    Customer save(Customer entity);
+    Customer save(Customer customer);
 
     @Override
     @CacheEvict("customer")
-    void deleteById(String name);
+    void deleteById(String id);
     
 }

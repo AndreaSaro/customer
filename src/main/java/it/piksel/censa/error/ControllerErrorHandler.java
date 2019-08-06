@@ -14,6 +14,7 @@ public class ControllerErrorHandler {
 		ErrorResponse errorResp = new ErrorResponse();
 		errorResp.setReasonCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		errorResp.setErrorMessage(e.getMessage());
+		errorResp.setExceptionClass(e.getClass().getName());
 		
 		return new ResponseEntity<ErrorResponse>(errorResp, HttpStatus.INTERNAL_SERVER_ERROR);
 	}

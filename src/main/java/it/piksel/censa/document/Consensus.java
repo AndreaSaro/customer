@@ -1,9 +1,9 @@
-package it.piksel.censa.customer.entity;
+package it.piksel.censa.document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collection = "consensus")
 public class Consensus {
 
 	@Id
@@ -36,6 +36,4 @@ public class Consensus {
 	public void setConsenso3(boolean consenso3) {
 		this.consenso3 = consenso3;
 	}
-	
-	
 }

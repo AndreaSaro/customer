@@ -1,14 +1,14 @@
-package it.piksel.censa.customer.entity;
+package it.piksel.censa.document;
 
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "customer")
 public class Customer {
 
 	@Id
@@ -17,13 +17,11 @@ public class Customer {
 	private String surname;
 	private Date birthDate;
 	private String email;
+	@NotNull
 	private String login;
+	@NotNull
 	private String password;
-	
-	@OneToMany
 	private List<Address> addresses;
-	
-	@OneToOne
 	private Consensus consensus;
 
 	public String getId() {
@@ -88,6 +86,14 @@ public class Customer {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	public Consensus getConsensus() {
+		return consensus;
+	}
+
+	public void setConsensus(Consensus consensus) {
+		this.consensus = consensus;
 	}
 
 }

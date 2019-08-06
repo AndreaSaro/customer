@@ -1,9 +1,9 @@
-package it.piksel.censa.customer.entity;
+package it.piksel.censa.document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collection = "address")
 public class Address {
 
 	@Id
@@ -92,6 +92,5 @@ public class Address {
 	public void setShippingNote(String shippingNote) {
 		this.shippingNote = shippingNote;
 	}
-	
 	
 }
