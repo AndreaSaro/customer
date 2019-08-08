@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.piksel.censa.document.Customer;
-import it.piksel.censa.error.DataIsNotValidException;
-
 @RestController
 public class CustomerController {
 
@@ -23,22 +20,22 @@ public class CustomerController {
 		return customerService.getAllCustomer();
 	}
 
-	@RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
 	public Customer getCustomer(@PathVariable String id) {
 		return customerService.getCustomer(id);
 	}
 
-	@RequestMapping(value = "/customers", method = RequestMethod.POST)
-	public void addCustomer(@RequestBody Customer customer) throws DataIsNotValidException {
+	@RequestMapping(value = "/add-customer", method = RequestMethod.POST)
+	public void addCustomer(@RequestBody Customer customer) {
 		customerService.addCustomer(customer);
 	}
 
-	@RequestMapping(value = "/customers/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update-customer/{id}", method = RequestMethod.PUT)
 	public void updateCustomer(@RequestBody Customer customer, @PathVariable String id) {
 		customerService.updateCustomer(id, customer);
 	}
 
-	@RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete-customer/{id}", method = RequestMethod.DELETE)
 	public void deleteCustomer(@PathVariable String id) {
 		customerService.deleteCustomer(id);
 	}

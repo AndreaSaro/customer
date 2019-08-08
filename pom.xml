@@ -12,7 +12,7 @@
 	<groupId>it.piksel.censa</groupId>
 	<artifactId>customer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>configServer-1</name>
+	<name>configServer</name>
 	<description>customer microservice</description>
 
 	<properties>

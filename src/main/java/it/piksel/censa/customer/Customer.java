@@ -1,4 +1,4 @@
-package it.piksel.censa.document;
+package it.piksel.censa.customer;
 
 import java.util.Date;
 import java.util.List;
@@ -6,21 +6,32 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import it.piksel.censa.address.Address;
 
 @Document(collection = "customer")
 public class Customer {
 
 	@Id
 	private String id;
+	@NotNull
 	private String name;
+	@NotNull
 	private String surname;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date birthDate;
+	@NotNull
 	private String email;
 	@NotNull
+	@Indexed(unique=true)
 	private String login;
 	@NotNull
 	private String password;
+	
 	private List<Address> addresses;
 	private Consensus consensus;
 

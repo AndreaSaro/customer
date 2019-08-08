@@ -1,4 +1,4 @@
-package it.piksel.censa.customer;
+package it.piksel.censa.address;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,24 +8,24 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface CustomerRepository extends MongoRepository<Customer,String>{
+public interface AddressRepository extends MongoRepository<Address,String>{
 
 	@Override
-	@Cacheable("customer")
-	Optional<Customer> findById(String id);
+	@Cacheable("address")
+	Optional<Address> findById(String id);
 
 	@Override
-    @Cacheable("customer")
-    @CacheEvict(value = "customer", allEntries = true)
-    List<Customer> findAll();
+    @Cacheable("address")
+    @CacheEvict(value = "address", allEntries = true)
+    List<Address> findAll();
 
     @SuppressWarnings("unchecked")
 	@Override
-    @CachePut("customer")
-    Customer save(Customer customer);
+    @CachePut("address")
+    Address save(Address address);
 
     @Override
-    @CacheEvict("customer")
+    @CacheEvict("address")
     void deleteById(String id);
     
 }
