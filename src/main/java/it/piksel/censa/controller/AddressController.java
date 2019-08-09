@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.piksel.censa.document.Address;
@@ -19,28 +20,34 @@ public class AddressController {
 	private AddressService addressService;
 
 	@RequestMapping(value = "/addresses", method = RequestMethod.GET)
-	public List<Address> getAllAddresses() {
-		return addressService.getAllAddresses();
+	public List<Address> getAllAddresses(@RequestParam String userid) {
+		return addressService.getAllAddresses(userid);
 	}
-
+	
 	@RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
-	public Address getAddress(@PathVariable String id) {
-		return addressService.getAddress(id);
+	public Address getAddress(@RequestParam String userid, @PathVariable String id) {
+		return addressService.getAddress(userid, id);
+	}
+	
+	@RequestMapping(value = "/address/add", method = RequestMethod.POST)
+	public Address addAddress(@RequestParam String userid, @RequestBody Address address) {
+		return addressService.addAddress(userid, address);
 	}
 
-	@RequestMapping(value = "/add-address", method = RequestMethod.POST)
-	public void addAddress(@RequestBody Address address) {
-		addressService.addAddress(address);
+	@RequestMapping(value = "/address/update/{id}", method = RequestMethod.PUT)
+	public Address updateAddress(@RequestParam String userid, @RequestBody Address address, @PathVariable String id) {
+		return addressService.updateAddress(userid, id, address);
+	}
+	
+	//il merge è da sistemare
+	@RequestMapping(value = "/address/patch/{id}", method = RequestMethod.PATCH)
+	public Address patchAddress(@RequestParam String userid, @RequestBody Address address, @PathVariable String id) {
+		return addressService.patchAddress(userid, id, address);
 	}
 
-	@RequestMapping(value = "/update-address/{id}", method = RequestMethod.PUT)
-	public void updateAddress(@RequestBody Address address, @PathVariable String id) {
-		addressService.updateAddress(id, address);
-	}
-
-	@RequestMapping(value = "/address/{id}", method = RequestMethod.DELETE)
-	public void deleteAddress(@PathVariable String id) {
-		addressService.deleteAddress(id);
+	@RequestMapping(value = "/address/delete/{id}", method = RequestMethod.DELETE)
+	public void deleteAddress(@RequestParam String userid, @PathVariable String id) {
+		addressService.deleteAddress(userid, id);
 	}
 
 }

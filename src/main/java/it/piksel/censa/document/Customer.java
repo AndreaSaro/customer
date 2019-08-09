@@ -1,12 +1,10 @@
 package it.piksel.censa.document;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,18 +18,10 @@ public class Customer {
 	private String name;
 	@NotNull
 	private String surname;
-	@JsonFormat(pattern="dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date birthDate;
 	@NotNull
 	private String email;
-	@NotNull
-	@Indexed(unique=true)
-	private String login;
-	@NotNull
-	private String password;
-	
-	private List<Address> addresses;
-	private Consensus consensus;
 
 	public String getId() {
 		return id;
@@ -71,38 +61,6 @@ public class Customer {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
-	public Consensus getConsensus() {
-		return consensus;
-	}
-
-	public void setConsensus(Consensus consensus) {
-		this.consensus = consensus;
 	}
 
 }

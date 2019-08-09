@@ -1,41 +1,51 @@
 package it.piksel.censa.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.piksel.censa.document.Customer;
 import it.piksel.censa.repository.CustomerRepository;
+import it.piksel.censa.utils.ObjectUtils;
 
 @Service
 public class CustomerService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
+	@Autowired
+	ObjectUtils objectUtils;
+	
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	public List<Customer> getAllCustomer() {
-		List<Customer> customers = new ArrayList<Customer>();
-		customerRepository.findAll().forEach(customers::add);
-		return customers;
+	public Customer getCustomer(String userId) {
+		Optional<Customer> optionalCustomer = customerRepository.findById(userId);
+		return optionalCustomer.isPresent() ? optionalCustomer.get() : null;
 	}
 
-	public Customer getCustomer(String id) {
-		return customerRepository.findById(id).get();
+	public Customer patchCustomer(String userId, Customer customer) {
+		Optional<Customer> optionalCustomer = customerRepository.findById(userId);
+		if (optionalCustomer.isPresent()) {
+			try {
+				Customer combinedCustomer = objectUtils.merge(optionalCustomer.get(), customer);
+				return customerRepository.save(combinedCustomer);
+			} catch (Exception e) {
+				logger.error("dovrei rilanciare una mia eccezione" ,e);
+				return null;
+			}
+		}
+		return null;
 	}
-
-	public Customer addCustomer(Customer customer) {
+	
+	public Customer updateCustomer(String userId, Customer customer) {
+		customer.setId(userId);
 		return customerRepository.save(customer);
 	}
+	
 
-	public Customer updateCustomer(String id, Customer customer) {
-		customer.setId(id);
-		return customerRepository.save(customer);
-	}
-
-	public void deleteCustomer(String id) {
-		customerRepository.deleteById(id);
-	}
 
 }
