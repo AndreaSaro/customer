@@ -1,4 +1,4 @@
-package it.piksel.censa.customer;
+package it.piksel.censa.document;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

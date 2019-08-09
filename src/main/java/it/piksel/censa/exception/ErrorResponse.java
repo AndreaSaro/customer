@@ -1,4 +1,4 @@
-package it.piksel.censa.error;
+package it.piksel.censa.exception;
 
 public class ErrorResponse {
 

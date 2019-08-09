@@ -1,4 +1,4 @@
-package it.piksel.censa.address;
+package it.piksel.censa.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +7,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import it.piksel.censa.document.Address;
 
 public interface AddressRepository extends MongoRepository<Address,String>{
 

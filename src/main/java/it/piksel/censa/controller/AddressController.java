@@ -1,4 +1,4 @@
-package it.piksel.censa.address;
+package it.piksel.censa.controller;
 
 import java.util.List;
 
@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import it.piksel.censa.document.Address;
+import it.piksel.censa.service.AddressService;
 
 @RestController
 public class AddressController {

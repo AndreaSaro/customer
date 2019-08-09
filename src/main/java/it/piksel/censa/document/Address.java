@@ -1,4 +1,4 @@
-package it.piksel.censa.address;
+package it.piksel.censa.document;
 
 import javax.validation.constraints.NotNull;
 

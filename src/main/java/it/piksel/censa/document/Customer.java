@@ -1,4 +1,4 @@
-package it.piksel.censa.customer;
+package it.piksel.censa.document;
 
 import java.util.Date;
 import java.util.List;
@@ -10,8 +10,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import it.piksel.censa.address.Address;
 
 @Document(collection = "customer")
 public class Customer {

@@ -1,10 +1,13 @@
-package it.piksel.censa.customer;
+package it.piksel.censa.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import it.piksel.censa.document.Customer;
+import it.piksel.censa.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
