@@ -10,17 +10,13 @@ import org.springframework.stereotype.Service;
 
 import it.piksel.censa.document.Address;
 import it.piksel.censa.repository.AddressRepository;
-import it.piksel.censa.utils.ObjectUtils;
 
 @Service
 public class AddressService {
 
 	@Autowired
 	private AddressRepository addressRepository;
-	
-	@Autowired
-	ObjectUtils objectUtils;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AddressService.class);
 
 	public List<Address> getAllAddresses(String customerId) {
@@ -29,7 +25,7 @@ public class AddressService {
 
 	public Address getAddress(String customerId, String id) {
 		List<Address> addresses = addressRepository.findByIdAndCustomerId(id, customerId);
-		if(addresses!=null && !addresses.isEmpty()) {
+		if (addresses != null && !addresses.isEmpty()) {
 			return addresses.get(0);
 		}
 		return null;
@@ -45,24 +41,17 @@ public class AddressService {
 		address.setCustomerId(customerId);
 		return addressRepository.save(address);
 	}
-	
+
 	public Address patchAddress(String customerId, String id, Address address) {
-		List<Address> addresses = addressRepository.findByIdAndCustomerId(id, customerId);
-		if(addresses!=null && !addresses.isEmpty()) {
-			try {
-				Address combinedAddress = objectUtils.merge(addresses.get(0), address);
-				return addressRepository.save(combinedAddress);
-			} catch (Exception e) {
-				logger.error("dovrei rilanciare una mia eccezione" ,e);
-				return null;
-			}
-		}
-		return null;
+		address.setId(id);
+		addressRepository.patch(address);
+		Optional<Address> optionalAddress = addressRepository.findById(id);
+		return optionalAddress.get();
 	}
 
 	public void deleteAddress(String userId, String id) {
 		List<Address> addresses = addressRepository.findByIdAndCustomerId(id, userId);
-		if(addresses!=null && !addresses.isEmpty()) {
+		if (addresses != null && !addresses.isEmpty()) {
 			addressRepository.deleteById(id);
 		}
 	}

@@ -9,16 +9,12 @@ import org.springframework.stereotype.Service;
 
 import it.piksel.censa.document.Customer;
 import it.piksel.censa.repository.CustomerRepository;
-import it.piksel.censa.utils.ObjectUtils;
 
 @Service
 public class CustomerService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
-	@Autowired
-	ObjectUtils objectUtils;
-	
 	@Autowired
 	private CustomerRepository customerRepository;
 
@@ -28,24 +24,15 @@ public class CustomerService {
 	}
 
 	public Customer patchCustomer(String userId, Customer customer) {
+		customer.setId(userId);
+		customerRepository.patch(customer);
 		Optional<Customer> optionalCustomer = customerRepository.findById(userId);
-		if (optionalCustomer.isPresent()) {
-			try {
-				Customer combinedCustomer = objectUtils.merge(optionalCustomer.get(), customer);
-				return customerRepository.save(combinedCustomer);
-			} catch (Exception e) {
-				logger.error("dovrei rilanciare una mia eccezione" ,e);
-				return null;
-			}
-		}
-		return null;
+		return optionalCustomer.get();
 	}
-	
+
 	public Customer updateCustomer(String userId, Customer customer) {
 		customer.setId(userId);
 		return customerRepository.save(customer);
 	}
-	
-
 
 }

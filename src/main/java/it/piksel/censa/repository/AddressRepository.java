@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import it.piksel.censa.document.Address;
 
-public interface AddressRepository extends MongoRepository<Address,String>{
+public interface AddressRepository extends MongoRepository<Address,String>, AddressRepositoryCustom{
 
 //	@Override
 //	@Cacheable("address")
