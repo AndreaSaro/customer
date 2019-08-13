@@ -1,5 +1,6 @@
 package it.piksel.censa.repository;
 
+import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 
 import org.slf4j.Logger;
@@ -12,13 +13,12 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
 import it.piksel.censa.document.Address;
-import it.piksel.censa.document.Customer;
 
 @Component
 public class AddressRepositoryCustomImpl implements AddressRepositoryCustom{
 
 	private final MongoTemplate mongoTemplate;
-	private static final Logger logger = LoggerFactory.getLogger(AddressRepositoryCustomImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Autowired
 	public AddressRepositoryCustomImpl(MongoTemplate mongoTemplate) {

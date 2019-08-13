@@ -1,5 +1,6 @@
 package it.piksel.censa.service;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 
-	private static final Logger logger = LoggerFactory.getLogger(AddressService.class);
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	public List<Address> getAllAddresses(String customerId) {
 		return addressRepository.findByCustomerId(customerId);

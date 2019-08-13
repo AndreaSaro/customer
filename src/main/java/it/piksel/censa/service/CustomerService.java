@@ -1,5 +1,6 @@
 package it.piksel.censa.service;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -13,7 +14,7 @@ import it.piksel.censa.repository.CustomerRepository;
 @Service
 public class CustomerService {
 
-	private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Autowired
 	private CustomerRepository customerRepository;
