@@ -18,7 +18,7 @@ public interface AddressRepository extends MongoRepository<Address,String>, Addr
 
 	@Override
 	@Cacheable("address")
-	@CacheEvict(value = "address", allEntries = true)
+	//@CacheEvict(value = "address", allEntries = true)
 	List<Address> findAll();
 
 	@SuppressWarnings("unchecked")

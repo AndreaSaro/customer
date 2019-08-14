@@ -18,7 +18,7 @@ public interface CustomerRepository extends MongoRepository<Customer,String>, Cu
 
 	@Override
 	@Cacheable("customer")
-	@CacheEvict(value = "customer", allEntries = true)
+	//@CacheEvict(value = "customer", allEntries = true)
 	List<Customer> findAll();
 
     @SuppressWarnings("unchecked")

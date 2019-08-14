@@ -17,19 +17,19 @@ public class CustomerController {
 	private CustomerService customerService;
 
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public Customer getJwtInfo(@RequestParam String userid) {
-		return customerService.getCustomer(userid);
+	public Customer getCustomer(@RequestParam String jwt_userid) {
+		return customerService.getCustomer(jwt_userid);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public Customer updateCustomer(@RequestParam String userid, @RequestBody Customer customer) {
-		return customerService.updateCustomer(userid, customer);
+	public Customer updateCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
+		return customerService.updateCustomer(jwt_userid, customer);
 	}
 	
 	//il merge è da sistemare
 	@RequestMapping(value = "/patch", method = RequestMethod.PATCH)
-	public Customer patchCustomer(@RequestParam String userid, @RequestBody Customer customer) {
-		return customerService.patchCustomer(userid, customer);
+	public Customer patchCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
+		return customerService.patchCustomer(jwt_userid, customer);
 	}
 
 }
