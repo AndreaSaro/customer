@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Address {
+public class Address extends BaseDocument{
 
 	@Id
 	private String id;

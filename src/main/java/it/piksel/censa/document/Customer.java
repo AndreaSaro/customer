@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Document(collection = "customer")
-public class Customer {
+@Document
+public class Customer extends BaseDocument{
 
 	@Id
 	private String id;
