@@ -4,9 +4,9 @@ import org.springframework.cache.annotation.CachePut;
 
 import it.piksel.censa.document.Address;
 
-public interface AddressRepositoryCustom{
+public interface AddressRepositoryCustom {
 
 	@CachePut("address")
 	void patch(Address address);
-    
+
 }

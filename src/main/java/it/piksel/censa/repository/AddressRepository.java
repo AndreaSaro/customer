@@ -10,31 +10,31 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import it.piksel.censa.document.Address;
 
-public interface AddressRepository extends MongoRepository<Address,String>, AddressRepositoryCustom{
+public interface AddressRepository extends MongoRepository<Address, String>, AddressRepositoryCustom {
+
+	@Override
+	@CacheEvict("address")
+	void deleteById(String id);
+
+	@Override
+	@Cacheable("address")
+	// @CacheEvict(value = "address", allEntries = true)
+	List<Address> findAll();
+
+	// New
+	@Cacheable("address")
+	List<Address> findByCustomerId(String customerId);
 
 	@Override
 	@Cacheable("address")
 	Optional<Address> findById(String id);
 
-	@Override
 	@Cacheable("address")
-	//@CacheEvict(value = "address", allEntries = true)
-	List<Address> findAll();
+	List<Address> findByIdAndCustomerId(String id, String customerId);
 
 	@SuppressWarnings("unchecked")
 	@Override
 	@CachePut("address")
 	Address save(Address address);
 
-    @Override
-    @CacheEvict("address")
-    void deleteById(String id);
-    
-    //New
-    @Cacheable("address")
-    List<Address> findByCustomerId(String customerId);
-    
-    @Cacheable("address")
-    List<Address> findByIdAndCustomerId(String id, String customerId);
-    
 }

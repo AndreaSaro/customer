@@ -15,16 +15,16 @@ import org.springframework.stereotype.Component;
 import it.piksel.censa.document.Customer;
 
 @Component
-public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom{
+public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
 
-	private final MongoTemplate mongoTemplate;
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	private final MongoTemplate mongoTemplate;
 
 	@Autowired
 	public CustomerRepositoryCustomImpl(MongoTemplate mongoTemplate) {
 		this.mongoTemplate = mongoTemplate;
 	}
-	
+
 	@Override
 	public void patch(Customer customer) {
 		try {
@@ -44,6 +44,4 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom{
 		}
 	}
 
-	
-    
 }

@@ -15,16 +15,16 @@ import org.springframework.stereotype.Component;
 import it.piksel.censa.document.Address;
 
 @Component
-public class AddressRepositoryCustomImpl implements AddressRepositoryCustom{
+public class AddressRepositoryCustomImpl implements AddressRepositoryCustom {
 
-	private final MongoTemplate mongoTemplate;
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	private final MongoTemplate mongoTemplate;
 
 	@Autowired
 	public AddressRepositoryCustomImpl(MongoTemplate mongoTemplate) {
 		this.mongoTemplate = mongoTemplate;
 	}
-	
+
 	@Override
 	public void patch(Address address) {
 		try {
@@ -44,6 +44,4 @@ public class AddressRepositoryCustomImpl implements AddressRepositoryCustom{
 		}
 	}
 
-	
-    
 }

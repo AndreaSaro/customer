@@ -15,13 +15,21 @@ import it.piksel.censa.repository.AddressRepository;
 @Service
 public class AddressService {
 
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 	@Autowired
 	private AddressRepository addressRepository;
 
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	public Address addAddress(String customerId, Address address) {
+		address.setCustomerId(customerId);
+		return addressRepository.save(address);
+	}
 
-	public List<Address> getAllAddresses(String customerId) {
-		return addressRepository.findByCustomerId(customerId);
+	public void deleteAddress(String userId, String id) {
+		List<Address> addresses = addressRepository.findByIdAndCustomerId(id, userId);
+		if (addresses != null && !addresses.isEmpty()) {
+			addressRepository.deleteById(id);
+		}
 	}
 
 	public Address getAddress(String customerId, String id) {
@@ -32,15 +40,8 @@ public class AddressService {
 		return null;
 	}
 
-	public Address addAddress(String customerId, Address address) {
-		address.setCustomerId(customerId);
-		return addressRepository.save(address);
-	}
-
-	public Address updateAddress(String customerId, String id, Address address) {
-		address.setId(id);
-		address.setCustomerId(customerId);
-		return addressRepository.save(address);
+	public List<Address> getAllAddresses(String customerId) {
+		return addressRepository.findByCustomerId(customerId);
 	}
 
 	public Address patchAddress(String customerId, String id, Address address) {
@@ -50,11 +51,10 @@ public class AddressService {
 		return optionalAddress.get();
 	}
 
-	public void deleteAddress(String userId, String id) {
-		List<Address> addresses = addressRepository.findByIdAndCustomerId(id, userId);
-		if (addresses != null && !addresses.isEmpty()) {
-			addressRepository.deleteById(id);
-		}
+	public Address updateAddress(String customerId, String id, Address address) {
+		address.setId(id);
+		address.setCustomerId(customerId);
+		return addressRepository.save(address);
 	}
 
 }

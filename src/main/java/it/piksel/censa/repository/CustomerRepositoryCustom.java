@@ -4,9 +4,9 @@ import org.springframework.cache.annotation.CachePut;
 
 import it.piksel.censa.document.Customer;
 
-public interface CustomerRepositoryCustom{
+public interface CustomerRepositoryCustom {
 
 	@CachePut("customer")
 	void patch(Customer customer);
-    
+
 }

@@ -16,12 +16,12 @@ public abstract class BaseDocument {
 		return creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
-
 	public Date getLastUpdateDate() {
 		return lastUpdateDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public void setLastUpdateDate(Date lastUpdateDate) {

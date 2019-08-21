@@ -21,15 +21,15 @@ public class CustomerController {
 		return customerService.getCustomer(jwt_userid);
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public Customer updateCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
-		return customerService.updateCustomer(jwt_userid, customer);
-	}
-	
-	//il merge è da sistemare
+	// il merge è da sistemare
 	@RequestMapping(value = "/patch", method = RequestMethod.PATCH)
 	public Customer patchCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
 		return customerService.patchCustomer(jwt_userid, customer);
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public Customer updateCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
+		return customerService.updateCustomer(jwt_userid, customer);
 	}
 
 }
