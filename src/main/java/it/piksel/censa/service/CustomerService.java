@@ -45,4 +45,8 @@ public class CustomerService {
 		return optionalCustomer.isPresent() ? optionalCustomer.get() : null;
 	}
 
+	public void delete(String jwt_userid) {
+		customerRepository.deleteById(jwt_userid);
+	}
+
 }

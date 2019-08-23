@@ -60,4 +60,12 @@ public class CustomerController {
 		return null;
 	}
 
+	// posso cancellare solo me stesso, il delete può essere invocato anche dal
+	// microservizio stesso perchè tanto è il client che deve cancellare il jwt
+	// il logout infatti non esiste, è il client a farlo
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public void deleteCustomerUser(@RequestParam String jwt_userid) {
+		customerService.delete(jwt_userid);
+	}
+
 }
