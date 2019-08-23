@@ -8,8 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Address extends BaseDocument {
 
-	@Id
-	private String id;
 	@NotNull
 	private String alias;
 	private String name;
@@ -48,10 +46,6 @@ public class Address extends BaseDocument {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public String getMobilePhone() {
@@ -106,9 +100,6 @@ public class Address extends BaseDocument {
 		this.email = email;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public void setMobilePhone(String mobilePhone) {
 		this.mobilePhone = mobilePhone;

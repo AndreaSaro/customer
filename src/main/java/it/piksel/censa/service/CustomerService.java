@@ -36,4 +36,13 @@ public class CustomerService {
 		return customerRepository.save(customer);
 	}
 
+	public Customer saveCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
+
+	public Customer loginCustomer(String username, String password) {
+		Optional<Customer> optionalCustomer = customerRepository.findByUsernameAndPassword(username, password);
+		return optionalCustomer.isPresent() ? optionalCustomer.get() : null;
+	}
+
 }

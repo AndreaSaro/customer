@@ -5,15 +5,20 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Document
 public class Customer extends BaseDocument {
+	@Transient
+	public static final String ROLE = "customer";
+	@Indexed(unique = true)
+	private String username;
+	private String password;
 
-	@Id
-	private String id;
 	@NotNull
 	private String name;
 	@NotNull
@@ -29,10 +34,6 @@ public class Customer extends BaseDocument {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public String getName() {
@@ -51,16 +52,32 @@ public class Customer extends BaseDocument {
 		this.email = email;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public static String getRole() {
+		return ROLE;
 	}
 
 }

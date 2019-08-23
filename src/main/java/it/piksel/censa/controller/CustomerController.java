@@ -21,7 +21,6 @@ public class CustomerController {
 		return customerService.getCustomer(jwt_userid);
 	}
 
-	// il merge è da sistemare
 	@RequestMapping(value = "/patch", method = RequestMethod.PATCH)
 	public Customer patchCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
 		return customerService.patchCustomer(jwt_userid, customer);
@@ -30,6 +29,16 @@ public class CustomerController {
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public Customer updateCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
 		return customerService.updateCustomer(jwt_userid, customer);
+	}
+	
+	//invocabili solo da api gateway perchè è lui che genera il JWT
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public Customer registerCustomer(@RequestBody Customer customer) {
+		return customerService.saveCustomer(customer);
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public Customer loginCustomer(@RequestBody Customer customer) {
+		return customerService.loginCustomer(customer.getUsername(), customer.getPassword());
 	}
 
 }

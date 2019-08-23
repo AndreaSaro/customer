@@ -29,5 +29,8 @@ public interface CustomerRepository extends MongoRepository<Customer, String>, C
 	@Override
 	@CachePut("customer")
 	Customer save(Customer customer);
+	
+	@Cacheable("customer")
+	Optional<Customer> findByUsernameAndPassword(String username, String password);
 
 }
