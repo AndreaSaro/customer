@@ -1,5 +1,8 @@
 package it.piksel.censa.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,15 +33,31 @@ public class CustomerController {
 	public Customer updateCustomer(@RequestParam String jwt_userid, @RequestBody Customer customer) {
 		return customerService.updateCustomer(jwt_userid, customer);
 	}
-	
-	//invocabili solo da api gateway perchè è lui che genera il JWT
+
+	// invocabili solo da api gateway perchè è lui che genera il JWT
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public Customer registerCustomer(@RequestBody Customer customer) {
-		return customerService.saveCustomer(customer);
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] encodedPassword = digest.digest(customer.getPassword().getBytes(StandardCharsets.UTF_8));
+			customer.setPassword(new String(encodedPassword));
+			return customerService.saveCustomer(customer);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Customer loginCustomer(@RequestBody Customer customer) {
-		return customerService.loginCustomer(customer.getUsername(), customer.getPassword());
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] encodedPassword = digest.digest(customer.getPassword().getBytes(StandardCharsets.UTF_8));
+			return customerService.loginCustomer(customer.getUsername(), new String(encodedPassword));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 }
