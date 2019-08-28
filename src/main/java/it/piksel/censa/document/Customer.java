@@ -2,9 +2,9 @@ package it.piksel.censa.document;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,15 +17,16 @@ public class Customer extends BaseDocument {
 	public static final String ROLE = "customer";
 	@Indexed(unique = true)
 	private String username;
+	@NotBlank
 	private String password;
-
-	@NotNull
+	@NotBlank
 	private String name;
-	@NotNull
+	@NotBlank
 	private String surname;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date birthDate;
-	@NotNull
+	@NotBlank
+	@Email
 	private String email;
 
 	public Date getBirthDate() {

@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
-import it.piksel.censa.document.Address;
+import it.piksel.censa.document.ShippingAddress;
 
 @Component
 public class AddressRepositoryCustomImpl implements AddressRepositoryCustom {
@@ -26,7 +26,7 @@ public class AddressRepositoryCustomImpl implements AddressRepositoryCustom {
 	}
 
 	@Override
-	public void patch(Address address) {
+	public void patch(ShippingAddress address) {
 		try {
 			Query query = new Query(Criteria.where("id").is(address.getId()));
 			Update update = new Update();

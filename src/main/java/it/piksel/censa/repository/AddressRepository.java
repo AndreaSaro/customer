@@ -8,9 +8,9 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import it.piksel.censa.document.Address;
+import it.piksel.censa.document.ShippingAddress;
 
-public interface AddressRepository extends MongoRepository<Address, String>, AddressRepositoryCustom {
+public interface AddressRepository extends MongoRepository<ShippingAddress, String>, AddressRepositoryCustom {
 
 	@Override
 	@CacheEvict("address")
@@ -19,22 +19,22 @@ public interface AddressRepository extends MongoRepository<Address, String>, Add
 	@Override
 	@Cacheable("address")
 	// @CacheEvict(value = "address", allEntries = true)
-	List<Address> findAll();
+	List<ShippingAddress> findAll();
 
 	// New
 	@Cacheable("address")
-	List<Address> findByCustomerId(String customerId);
+	List<ShippingAddress> findByCustomerId(String customerId);
 
 	@Override
 	@Cacheable("address")
-	Optional<Address> findById(String id);
+	Optional<ShippingAddress> findById(String id);
 
 	@Cacheable("address")
-	List<Address> findByIdAndCustomerId(String id, String customerId);
+	List<ShippingAddress> findByIdAndCustomerId(String id, String customerId);
 
 	@SuppressWarnings("unchecked")
 	@Override
 	@CachePut("address")
-	Address save(Address address);
+	ShippingAddress save(ShippingAddress address);
 
 }

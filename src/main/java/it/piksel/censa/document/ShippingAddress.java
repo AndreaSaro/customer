@@ -1,35 +1,49 @@
 package it.piksel.censa.document;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class Address extends BaseDocument {
+import it.piksel.censa.validation.OnController;
 
+@Document
+public class ShippingAddress extends BaseDocument {
+
+	@Null(groups = OnController.class)
 	@NotNull
-	private String alias;
+	private String customerId;
+	@NotBlank(groups = OnController.class)
+	@NotBlank
 	private String name;
+	@NotBlank(groups = OnController.class)
+	@NotBlank
 	private String surname;
-	private String email;
+	@NotBlank(groups = OnController.class)
+	@NotBlank
 	private String address;
+	@NotBlank(groups = OnController.class)
+	@NotBlank
 	private String state;
+	@NotBlank(groups = OnController.class)
+	@NotBlank
 	private String country;
+	@NotBlank(groups = OnController.class)
+	@NotBlank
 	private String city;
+	@NotBlank(groups = OnController.class)
+	@NotBlank
+	@Digits(integer = 6, fraction = 0, groups = OnController.class)
+	@Digits(integer = 6, fraction = 0)
 	private String zipCode;
 	private String mobilePhone;
 	private String phone;
 	private String shippingNote;
-	@NotNull
-	private String customerId;
 
 	public String getAddress() {
 		return address;
-	}
-
-	public String getAlias() {
-		return alias;
 	}
 
 	public String getCity() {
@@ -42,10 +56,6 @@ public class Address extends BaseDocument {
 
 	public String getCustomerId() {
 		return customerId;
-	}
-
-	public String getEmail() {
-		return email;
 	}
 
 	public String getMobilePhone() {
@@ -80,10 +90,6 @@ public class Address extends BaseDocument {
 		this.address = address;
 	}
 
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
-
 	public void setCity(String city) {
 		this.city = city;
 	}
@@ -95,11 +101,6 @@ public class Address extends BaseDocument {
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 
 	public void setMobilePhone(String mobilePhone) {
 		this.mobilePhone = mobilePhone;
